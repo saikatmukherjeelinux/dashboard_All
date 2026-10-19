@@ -1,0 +1,40 @@
+@keyframes character-blink{0%,43%,47%,100%{transform:scaleY(1)}45%{transform:scaleY(.08)}}
+.spider-visitor{position:fixed;top:0;left:50%;width:64px;height:60px;margin-left:-32px;z-index:6;pointer-events:none;visibility:hidden;transform:translateY(-90px);will-change:transform}.spider-visitor.is-visiting{visibility:visible}.spider-thread{position:absolute;bottom:calc(100% - 10px);left:50%;height:120vh;width:1px;background:linear-gradient(#bfcce04d,#e3d9ffb3);box-shadow:0 0 3px #e3d9ff22}.spider-drawing{width:64px;height:60px;overflow:visible;transform-origin:50% 10%;filter:drop-shadow(0 3px 5px #0003)}.is-visiting .spider-drawing{animation:spider-sway 2.4s ease-in-out infinite}.is-visiting .spider-legs{transform-origin:45px 40px;animation:spider-tiptoe .8s ease-in-out infinite alternate}@keyframes spider-sway{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}@keyframes spider-tiptoe{from{transform:scaleX(.95) scaleY(1.03)}to{transform:scaleX(1.05) scaleY(.97)}}@media(prefers-reduced-motion:reduce){.spider-visitor,.spider-visitor.is-visiting{display:none}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sleepy-heading{position:relative;width:fit-content;margin-top:28px}.sleepy-heading .eyebrow{position:relative}.sleepy-boy{position:absolute;bottom:calc(100% - 3px);left:55px;width:114px;height:54px;pointer-events:none}.sleepy-boy svg{width:114px;height:54px;overflow:visible}.sleepy-breath{transform-origin:65px 62px;animation:sleep-breathe 3.5s ease-in-out infinite}.sleep-z{position:absolute;left:92px;top:6px;font:bold 12px/1 system-ui;color:#b6a0ff;opacity:0;animation:sleep-dream 3.6s ease-out infinite}.sleep-z.z-two{animation-delay:1.2s}.sleep-z.z-three{animation-delay:2.4s;font-size:16px}@keyframes sleep-breathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.045) translateY(-.4px)}}@keyframes sleep-dream{0%{transform:translate(0,0) rotate(-8deg) scale(.65);opacity:0}20%{opacity:.9}100%{transform:translate(22px,-30px) rotate(12deg) scale(1.2);opacity:0}}@media(prefers-reduced-motion:reduce){.sleepy-breath,.sleep-z{animation:none}.sleep-z.z-three{opacity:.7}}
+
+
+#spiderBugs{color:inherit}.spider-cargo{position:absolute;top:60px;left:50%;transform:translateX(-50%);color:#edf1ff;font:650 18px/1.3 Segoe UI,system-ui,sans-serif;white-space:nowrap;text-shadow:0 0 12px #b6a0ff55}.spider-cargo::before{content:"";position:absolute;left:50%;bottom:100%;height:12px;width:1px;background:#e3d9ff99}
+
+
+.magic-wizard{position:fixed;left:0;top:0;width:80px;height:120px;z-index:8;pointer-events:none;visibility:hidden;transform:translateX(-110px)}.magic-wizard.onstage{visibility:visible}.magic-wizard svg{width:80px;height:120px;overflow:visible;filter:drop-shadow(0 4px 4px #0003)}.wizard-person{transform-origin:43px 95px}.wizard-walking .wizard-person{animation:wizard-bob .5s ease-in-out infinite}.wizard-arm{transform-origin:55px 57px}.casting .wizard-arm{animation:wand-flick .9s ease-in-out 2}.wand-light{opacity:0}.casting .wand-light{opacity:1;filter:drop-shadow(0 0 8px #ffe1a1)}.magic-caption{position:absolute;top:15px;left:-40px;color:#ffe1a1;font:italic 600 15px Georgia,serif;opacity:0}.casting .magic-caption{opacity:1}.wand-sparks{position:absolute;left:60px;top:10px;font-size:24px;color:#ffe1a1;opacity:0}.casting .wand-sparks{animation:magic-burst 1.2s ease-out infinite}.wand-sparks span{display:inline-block;color:#b6a0ff;transform:translate(-30px,-20px)}@keyframes wizard-bob{50%{transform:translateY(-3px) rotate(2deg)}}@keyframes wand-flick{0%,100%{transform:rotate(0)}45%{transform:rotate(-22deg)}70%{transform:rotate(12deg)}}@keyframes magic-burst{0%{opacity:0;transform:scale(.3)}25%{opacity:1}100%{opacity:0;transform:translate(-40px,-20px) scale(1.5)}}@media(prefers-reduced-motion:reduce){.magic-wizard{display:none}}
+
+
+/* Characters belong to the page, so scrolling moves them with their content. */
+.spider-visitor,.magic-wizard{position:absolute}html{overflow-x:clip}body{position:relative;overflow-x:clip}
+
+
+.voldemort-perch{position:relative}.tiny-voldemort{position:absolute;right:32px;top:-72px;width:84px;height:97px;z-index:3;pointer-events:none;visibility:hidden}.tiny-voldemort svg{position:relative;width:84px;height:97px;overflow:visible;opacity:0;filter:drop-shadow(0 3px 3px #0004)}.tiny-voldemort.appearing{visibility:visible}.appearing svg{animation:voldy-materialize 1.4s ease-out both}.tiny-voldemort.seated svg{opacity:1;animation:none}.voldy-body{transform-origin:50px 85px}.seated .voldy-body{animation:voldy-breathe 3s ease-in-out infinite}.voldy-eyes{transform-box:fill-box;transform-origin:center;animation:character-blink 4s infinite}.apparition-mist{position:absolute;inset:5px -16px -5px;border-radius:50%;background:radial-gradient(ellipse,#a3dba966,transparent 65%);opacity:0;filter:blur(8px)}.appearing .apparition-mist{animation:voldy-mist 1.7s ease-out both}.parseltongue{position:absolute;right:77px;top:0;padding:12px 18px;color:#c6edcc;background:#142c27f5;border:1px solid #7bc69766;border-radius:18px 18px 0 18px;font:italic 600 18px Georgia,serif;white-space:nowrap;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}.parseltongue small{display:block;color:#82b79a;font:10px system-ui;letter-spacing:4px;margin-bottom:3px}.speaking .parseltongue{opacity:1;transform:translateY(0);animation:parseltongue-hiss 2s ease-in-out infinite}.snake-hiss{display:inline-block;margin-left:6px;color:#8ecd9e}.tiny-voldemort.vanishing svg{animation:voldy-materialize 1.3s ease-in reverse both}.vanishing .apparition-mist{animation:voldy-mist 1.3s ease-out both}@keyframes voldy-materialize{0%{opacity:0;filter:blur(12px);transform:translateY(-18px) scale(.65)}70%{opacity:1;filter:blur(1px);transform:translateY(3px) scale(1.03)}100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}}@keyframes voldy-mist{0%,100%{opacity:0;transform:scale(.5)}40%{opacity:1;transform:scale(1.5)}}@keyframes voldy-breathe{50%{transform:translateY(-1px) scaleY(1.015)}}@keyframes parseltongue-hiss{0%,100%{translate:0 0;rotate:-1deg}50%{translate:2px -2px;rotate:1deg}}@media(max-width:700px){.tiny-voldemort{right:12px}.parseltongue{font-size:14px;padding:10px 12px;right:68px}}@media(prefers-reduced-motion:reduce){.tiny-voldemort{display:none}}
+
+
+.nagini-neck{transform-origin:43px 87px;animation:nagini-sway 3.6s ease-in-out infinite}.nagini-tongue{opacity:0;transform-origin:52px 35px}.speaking .nagini-tongue{animation:nagini-flick 1.7s ease-in-out infinite}@keyframes nagini-sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}@keyframes nagini-flick{0%,35%,70%,100%{opacity:0;transform:scaleY(.1)}42%,58%{opacity:1;transform:scaleY(1)}}@media(prefers-reduced-motion:reduce){.nagini-neck,.nagini-tongue{animation:none}}
+
+
+
+
+
+
+.bubble-character{position:absolute;left:-29px;top:-28px;width:48px;height:68px;pointer-events:none;filter:drop-shadow(0 3px 3px #0003)}.bubble-character svg{width:48px;height:68px;overflow:visible}.bubble-hero-body{transform-origin:31px 65px;animation:bubble-hero-breathe 3s ease-in-out infinite}.joke-orb:hover .bubble-hero-body{animation-play-state:paused}@keyframes bubble-hero-breathe{50%{transform:translateY(-1px) rotate(2deg)}}@media(max-width:700px){.bubble-character{left:-15px;top:-24px;width:36px;height:51px}.bubble-character svg{width:36px;height:51px}}@media(prefers-reduced-motion:reduce){.bubble-hero-body{animation:none}}
+
