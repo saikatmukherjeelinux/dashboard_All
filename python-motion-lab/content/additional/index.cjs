@@ -1,0 +1,11 @@
+module.exports=[
+  ...require('./language.cjs'),
+  ...require('./errors-files.cjs'),
+  ...require('./numbers-collections.cjs'),
+  ...require('./types-design.cjs'),
+  ...require('./pipelines-concurrency.cjs'),
+  ...require('./collections-text-36.cjs'),
+  ...require('./tools-security-36.cjs'),
+  ...require('./applications-36.cjs'),
+  ...require('./practical-10.cjs')
+];

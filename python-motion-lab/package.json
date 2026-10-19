@@ -1,0 +1,23 @@
+{
+  "name": "python-motion-lab",
+  "version": "1.6.0",
+  "private": true,
+  "description": "A buildless interactive Python learning website with 200 conceptual lessons and checked code examples.",
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "build:content": "node scripts/build-content.cjs",
+    "test": "node tests/content.cjs",
+    "test:browser": "node tests/browser.cjs",
+    "test:examples": "python tests/examples.py",
+    "test:examples-browser": "node tests/examples-browser.cjs",
+    "test:labs": "node tests/labs-browser.cjs",
+    "test:lab-examples": "node tests/lab-manifest.cjs && python tests/lab-examples.py",
+    "docs:labs": "node scripts/build-lab-catalog.cjs",
+    "test:quiz-examples": "node tests/quiz-manifest.cjs && python tests/quiz-examples.py",
+    "build:quiz": "node scripts/build-quiz-342.cjs",
+    "test:sidebar": "node tests/sidebar-browser.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
