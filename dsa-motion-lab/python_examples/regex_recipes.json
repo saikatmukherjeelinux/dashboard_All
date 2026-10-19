@@ -1,0 +1,272 @@
+[
+  {
+    "id": "rx_literal",
+    "title": "Literal Substring Search",
+    "text": "The cat saw another cat.",
+    "pattern": "cat",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_boundary",
+    "title": "Whole-Word Matching",
+    "text": "cat scatter cat! cats",
+    "pattern": "\\bcat\\b",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_case",
+    "title": "Case-Insensitive Search",
+    "text": "Cat cat CAT cAt",
+    "pattern": "cat",
+    "mode": "matches",
+    "flags": "i",
+    "replacement": ""
+  },
+  {
+    "id": "rx_class",
+    "title": "Character-Class Filtering",
+    "text": "Algorithms are fun.",
+    "pattern": "[aeiou]",
+    "mode": "matches",
+    "flags": "i",
+    "replacement": ""
+  },
+  {
+    "id": "rx_negated",
+    "title": "Negated Character Classes",
+    "text": "Hello, world! #42",
+    "pattern": "[^A-Za-z0-9\\s]+",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_alternation",
+    "title": "Alternation · Multiple Choices",
+    "text": "cat dog bird catdog",
+    "pattern": "cat|dog",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_repeat",
+    "title": "Bounded Repetition",
+    "text": "a an cat bird horse elephant",
+    "pattern": "\\b[A-Za-z]{3,5}\\b",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_lines",
+    "title": "Multiline Line Selection",
+    "text": "Alpha\nbeta\nGamma\n42",
+    "pattern": "^[A-Z][^\\r\\n]*",
+    "mode": "matches",
+    "flags": "m",
+    "replacement": ""
+  },
+  {
+    "id": "rx_greedy",
+    "title": "Greedy Quantifier Matching",
+    "text": "<b>one</b><i>two</i>",
+    "pattern": "<.*>",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_lazy",
+    "title": "Lazy Quantifier Matching",
+    "text": "<b>one</b><i>two</i>",
+    "pattern": "<.*?>",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_lookahead",
+    "title": "Positive Lookahead",
+    "text": "name: Saikat age: 25",
+    "pattern": "\\b[A-Za-z]+(?=:)",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_not_ahead",
+    "title": "Negative Lookahead",
+    "text": "cat dog catalog bird",
+    "pattern": "\\b(?!cat\\b)[A-Za-z]+\\b",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_lookbehind",
+    "title": "Positive Lookbehind",
+    "text": "Costs $12.50 or $7 today",
+    "pattern": "(?<=\\$)[0-9]+(?:\\.[0-9]{2})?",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_not_behind",
+    "title": "Negative Lookbehind",
+    "text": "12 -34 56 -78",
+    "pattern": "(?<!-)\\b[0-9]+\\b",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_overlap",
+    "title": "Overlapping Match Detection",
+    "text": "banana",
+    "pattern": "(?=(ana))",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_captures",
+    "title": "Capture-Group Extraction",
+    "text": "Dates 2026-10-18 and 2025-01-02",
+    "pattern": "([0-9]{4})-([0-9]{2})-([0-9]{2})",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_backref",
+    "title": "Backreferences · Repeated Words",
+    "text": "go go stop now now",
+    "pattern": "\\b([A-Za-z]+)\\s+\\1\\b",
+    "mode": "matches",
+    "flags": "i",
+    "replacement": ""
+  },
+  {
+    "id": "rx_integer",
+    "title": "Signed Integer Extraction",
+    "text": "Values -12, +7, and 42",
+    "pattern": "[+-]?[0-9]+",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_decimal",
+    "title": "Decimal Number Extraction",
+    "text": "Pay -12.50 plus 7 or +0.25",
+    "pattern": "[+-]?(?:[0-9]+\\.[0-9]+|[0-9]+)",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_email",
+    "title": "Email-Shaped Token Extraction",
+    "text": "Mail a.b@example.com or dev@test.org",
+    "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_url",
+    "title": "HTTP URL Token Extraction",
+    "text": "See https://example.com/a and http://test.org",
+    "pattern": "https?://[^\\s<>\"']+",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_words",
+    "title": "Word Tokenization",
+    "text": "Don't stop: learn regex.",
+    "pattern": "[A-Za-z]+(?:'[A-Za-z]+)?",
+    "mode": "matches",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_ipv4",
+    "title": "IPv4 Shape & Range Validation",
+    "text": "192.168.1.42",
+    "pattern": "(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}",
+    "mode": "validate",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_time",
+    "title": "24-Hour Time Validation",
+    "text": "23:59",
+    "pattern": "(?:[01][0-9]|2[0-3]):[0-5][0-9]",
+    "mode": "validate",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_identifier",
+    "title": "Identifier Validation",
+    "text": "my_value2",
+    "pattern": "[A-Za-z_][A-Za-z0-9_]*",
+    "mode": "validate",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_password",
+    "title": "Password-Rule Lookaheads",
+    "text": "LearnDSA9!",
+    "pattern": "(?=.{8,32}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*]+",
+    "mode": "validate",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_split",
+    "title": "Delimiter-Based Splitting",
+    "text": "red,green; blue\tyellow",
+    "pattern": "[,;\\s]+",
+    "mode": "split",
+    "flags": "",
+    "replacement": ""
+  },
+  {
+    "id": "rx_space",
+    "title": "Whitespace Run Normalization",
+    "text": "a   b\t\tc\n d",
+    "pattern": "\\s+",
+    "mode": "replace",
+    "flags": "",
+    "replacement": " "
+  },
+  {
+    "id": "rx_mask",
+    "title": "Digit Masking",
+    "text": "Card 1234, PIN 5678",
+    "pattern": "[0-9]",
+    "mode": "replace",
+    "flags": "",
+    "replacement": "#"
+  },
+  {
+    "id": "rx_reorder",
+    "title": "Capture-Based Date Reformatting",
+    "text": "Dates: 2026-10-18 and 2025-01-02",
+    "pattern": "([0-9]{4})-([0-9]{2})-([0-9]{2})",
+    "mode": "replace",
+    "flags": "",
+    "replacement": "$3/$2/$1"
+  }
+]

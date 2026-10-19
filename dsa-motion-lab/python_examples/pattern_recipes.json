@@ -1,0 +1,767 @@
+[
+  {
+    "id": "two_sum",
+    "title": "Two Sum · Complement Hash Map",
+    "group": "Interview Hashing",
+    "defaults": {
+      "nums": [
+        2,
+        7,
+        11,
+        15
+      ],
+      "target": 9
+    },
+    "complexity": "O(n) expected",
+    "idea": "Remember earlier values so each new number can ask whether its missing partner has already appeared.",
+    "steps": [
+      "Compute target minus the current value.",
+      "Look for that complement among earlier indices.",
+      "If found, return the two different indices. Otherwise remember this value.",
+      "Return an empty list if no pair exists."
+    ],
+    "example": "For [2,7,11,15] and target 9, 2 needs 7; at index 1, earlier 2 completes the pair [0,1].",
+    "use": "Pair lookup and replacing a quadratic nested scan.",
+    "watch": "nums: up to 20 integers in −100…100; target: −200…200. Returns the first discovered valid index pair. Map space O(n)."
+  },
+  {
+    "id": "three_sum",
+    "title": "Three Sum · Unique Triplets",
+    "group": "Interview Two Pointers",
+    "defaults": {
+      "nums": [
+        -1,
+        0,
+        1,
+        2,
+        -1,
+        -4
+      ]
+    },
+    "complexity": "O(n²)",
+    "idea": "Sort the values, fix one number, and move two pointers to find the remaining pair summing to its opposite.",
+    "steps": [
+      "Sort a copy of the input.",
+      "Fix each distinct first value and place pointers at the ends of the remaining suffix.",
+      "Move left rightward if the sum is too small; move right leftward if too large.",
+      "Record zero-sum triples and skip equal pointer values so each value triple appears once."
+    ],
+    "example": "[-1,0,1,2,-1,-4] gives [-1,-1,2] and [-1,0,1]. These are value triples, not original indices.",
+    "use": "Finding all distinct zero-sum triples.",
+    "watch": "nums: up to 20 integers. Target is fixed at 0. Sorting a copy uses O(n) storage in this demo, plus output."
+  },
+  {
+    "id": "product_except",
+    "title": "Product Except Self · Prefix/Suffix",
+    "group": "Interview Arrays",
+    "defaults": {
+      "nums": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "At each position, multiply everything before it by everything after it, without dividing.",
+    "steps": [
+      "Walk left to right, storing the product strictly before each index.",
+      "Walk right to left with a running product strictly after each index.",
+      "Multiply the two contributions at that index.",
+      "Keep zeros as ordinary factors; division is never needed."
+    ],
+    "example": "[1,2,3,4] produces [24,12,8,6]. With [2,0,4], the result is [0,8,0].",
+    "use": "Computing per-position aggregates while excluding the current element.",
+    "watch": "nums: up to 20 integers. Exact-safe-integer overflow is rejected; reduce magnitudes if needed. O(1) running state beyond O(n) output, excluding copied input and traces."
+  },
+  {
+    "id": "sum_k",
+    "title": "Subarray Sum Equals K",
+    "group": "Interview Hashing",
+    "defaults": {
+      "nums": [
+        1,
+        2,
+        3,
+        -2,
+        2
+      ],
+      "target": 3
+    },
+    "complexity": "O(n) expected",
+    "idea": "A subarray has sum k when two prefix totals differ by k. Count how many earlier totals complete that difference.",
+    "steps": [
+      "Start the prefix-frequency map with total 0 occurring once.",
+      "Add the current value to the running total.",
+      "Add the frequency of current total minus target to the answer.",
+      "Only then record the new total for later positions."
+    ],
+    "example": "For [1,1,1] and target 2, the pairs of adjacent ones give two subarrays. Negative values also work.",
+    "use": "Counting contiguous target-sum ranges, including with negative numbers.",
+    "watch": "nums: up to 20 integers; target: −200…200. Counts position-distinct nonempty subarrays. O(n) map storage."
+  },
+  {
+    "id": "consecutive",
+    "title": "Longest Consecutive Sequence",
+    "group": "Interview Hashing",
+    "defaults": {
+      "nums": [
+        20,
+        4,
+        50,
+        1,
+        3,
+        2,
+        2
+      ]
+    },
+    "complexity": "O(n) expected",
+    "idea": "Only start counting a consecutive run at a value that has no predecessor in the set.",
+    "steps": [
+      "Put distinct values in a hash set.",
+      "Skip x if x−1 is present: it lies inside an earlier run.",
+      "From a run start, count x, x+1, and later present values.",
+      "Keep the largest run length; original array order does not matter."
+    ],
+    "example": "[20,4,50,1,3,2] contains the run 1,2,3,4, so the answer is 4.",
+    "use": "Recognizing runs in unsorted data without sorting.",
+    "watch": "nums: up to 20 integers. Duplicate values count once. Expected O(n) set storage and total membership work."
+  },
+  {
+    "id": "rain",
+    "title": "Trapping Rain Water · Two Pointers",
+    "group": "Interview Two Pointers",
+    "defaults": {
+      "nums": [
+        0,
+        1,
+        0,
+        2,
+        1,
+        0,
+        1,
+        3,
+        2,
+        1,
+        2,
+        1
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "Water over a bar is limited by surrounding walls. Finalize the side whose current boundary is lower.",
+    "steps": [
+      "Place pointers at both ends and track the highest wall seen from each side.",
+      "Process the lower boundary side: the opposite side already provides enough support.",
+      "Water there is that side’s maximum minus the bar height.",
+      "Move inward and accumulate the volume."
+    ],
+    "example": "[3,0,2,0,4] holds 7 units: 3 above the first dip, 1 above height 2, and 3 above the next dip.",
+    "use": "Computing water trapped between unit-width bars.",
+    "watch": "nums: nonnegative integer heights, at most 20. Returns volume, not the maximum container area. O(1) core state; the demo also records per-index water."
+  },
+  {
+    "id": "container",
+    "title": "Container With Most Water",
+    "group": "Interview Two Pointers",
+    "defaults": {
+      "nums": [
+        1,
+        8,
+        6,
+        2,
+        5,
+        4,
+        8,
+        3,
+        7
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "Choose two vertical lines maximizing width times the shorter line. Move the shorter side to seek an improvement.",
+    "steps": [
+      "Begin with the widest pair of lines.",
+      "Compute width multiplied by the lower height.",
+      "Move the pointer at the shorter line; keeping it cannot improve area at a smaller width.",
+      "Repeat and remember the maximum."
+    ],
+    "example": "For [1,8,6,2,5,4,8,3,7], lines at indices 1 and 8 give width 7 × height 7 = 49.",
+    "use": "Proving that a pointer move discards only dominated candidates.",
+    "watch": "nums: up to 20 nonnegative heights. Fewer than two lines give area 0. O(1) algorithm working state."
+  },
+  {
+    "id": "dutch",
+    "title": "Dutch National Flag · Three-Way Partition",
+    "group": "Interview Arrays",
+    "defaults": {
+      "nums": [
+        2,
+        0,
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "Keep separate regions for 0s, 1s, unknown values, and 2s, and inspect each unknown value.",
+    "steps": [
+      "low marks the next 0 position, mid the current unknown value, and high the last unknown position.",
+      "For 0, swap into low and advance low and mid.",
+      "For 1, advance mid.",
+      "For 2, swap with high and reduce high; inspect the incoming value before moving mid."
+    ],
+    "example": "[2,0,2,1,1,0] becomes [0,0,1,1,2,2] without a comparison sort.",
+    "use": "Sorting three categories and building duplicate-aware quickselect partitions.",
+    "watch": "nums may contain only 0, 1, and 2. O(1) in-place core space; the lesson copies input for replay. Not stable."
+  },
+  {
+    "id": "rotated",
+    "title": "Search Rotated Sorted Array",
+    "group": "Interview Binary Search",
+    "defaults": {
+      "nums": [
+        4,
+        5,
+        6,
+        7,
+        0,
+        1,
+        2
+      ],
+      "target": 0
+    },
+    "complexity": "O(log n) search",
+    "idea": "A rotation breaks global order, but at least one half around the middle is still sorted.",
+    "steps": [
+      "Compare the middle value with the target.",
+      "Determine which half is sorted by comparing its endpoints.",
+      "Keep the sorted half only if its value range contains the target; otherwise choose the other half.",
+      "Return its original rotated-array index or −1."
+    ],
+    "example": "In [4,5,6,7,0,1,2], target 0 is at index 4. The array is not sorted again before searching.",
+    "use": "Searching a sorted sequence after a cyclic rotation.",
+    "watch": "nums must be a rotation of distinct increasing integers; up to 20. Search is O(log n); the demo’s upfront validation scans O(n). O(1) search space."
+  },
+  {
+    "id": "merge_intervals",
+    "title": "Merge Overlapping Intervals",
+    "group": "Interview Intervals",
+    "defaults": {
+      "intervals": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          6
+        ],
+        [
+          8,
+          10
+        ],
+        [
+          15,
+          18
+        ]
+      ]
+    },
+    "complexity": "O(n log n)",
+    "idea": "After sorting by start, only the last merged interval can overlap the next one.",
+    "steps": [
+      "Sort intervals by start, then end.",
+      "If the next start is no greater than the current merged end, extend the end to their maximum.",
+      "Otherwise begin a new merged interval.",
+      "Keep the growing list of disjoint intervals."
+    ],
+    "example": "[[1,3],[2,6],[8,10]] merges into [[1,6],[8,10]]. Touching endpoints also merge.",
+    "use": "Consolidating occupied ranges and simplifying later interval queries.",
+    "watch": "intervals: up to 16 [start,end] pairs with integer endpoints −100…100 and start < end. Uses closed/touching merge semantics. O(n) output/copy storage."
+  },
+  {
+    "id": "meeting_rooms",
+    "title": "Meeting Rooms II · End-Time Heap",
+    "group": "Interview Heaps",
+    "defaults": {
+      "intervals": [
+        [
+          0,
+          30
+        ],
+        [
+          5,
+          10
+        ],
+        [
+          15,
+          20
+        ]
+      ]
+    },
+    "complexity": "O(n log n)",
+    "idea": "Reuse a room as soon as its earliest-ending meeting finishes; peak simultaneous meetings determine room demand.",
+    "steps": [
+      "Sort meetings by start time.",
+      "Remove every active end time no later than the next start.",
+      "Add the new meeting end to a min heap.",
+      "Record the largest number of active meetings."
+    ],
+    "example": "[[0,30],[5,10],[15,20]] needs 2 rooms. A meeting ending at 10 can share a room with one starting at 10.",
+    "use": "Resource allocation and maximum overlap in time intervals.",
+    "watch": "Uses half-open [start,end) meetings, unlike the touching-merge lesson. At most 16 intervals, start < end. O(n) heap storage."
+  },
+  {
+    "id": "top_k",
+    "title": "Top K Frequent Elements · Bounded Heap",
+    "group": "Interview Heaps",
+    "defaults": {
+      "nums": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        3
+      ],
+      "k": 2
+    },
+    "complexity": "O(n + u log(k+1))",
+    "idea": "Count frequencies, then keep only the best k candidates in a heap whose root is the least desirable retained candidate.",
+    "steps": [
+      "Count each distinct value.",
+      "Push a value with its count into the bounded heap.",
+      "If there are more than k candidates, remove the worst one.",
+      "Sort retained results by decreasing count and then increasing value."
+    ],
+    "example": "[1,1,1,2,2,3] with k=2 returns [1,2]. Equal frequencies prefer smaller numeric values.",
+    "use": "Finding frequent items when k is smaller than the number of distinct values u.",
+    "watch": "k ranges from 0 to the number of distinct values. O(u+k) storage; final output ordering adds O(k log k)."
+  },
+  {
+    "id": "quickselect",
+    "title": "Kth Largest · Three-Way Quickselect",
+    "group": "Interview Selection",
+    "defaults": {
+      "nums": [
+        3,
+        2,
+        3,
+        1,
+        2,
+        4,
+        5,
+        5,
+        6
+      ],
+      "k": 4
+    },
+    "complexity": "O(n²) worst",
+    "idea": "Partition around a pivot and continue only in the region containing sorted index n−k.",
+    "steps": [
+      "Choose the midpoint value as a deterministic pivot.",
+      "Partition into values less than, equal to, and greater than the pivot.",
+      "Discard the regions that cannot contain index n−k.",
+      "If the index lies in the equal region, return its value."
+    ],
+    "example": "For [3,2,1,5,6,4] and k=2, the second largest value is 5. Duplicate values count as separate positions.",
+    "use": "Selection without fully sorting every region.",
+    "watch": "1 ≤ k ≤ nums.length. Midpoint pivots are deterministic: balanced partitions give O(n), but worst-case time is O(n²). O(1) iterative core state beyond the copied array."
+  },
+  {
+    "id": "next_greater",
+    "title": "Next Greater Element · Monotonic Stack",
+    "group": "Interview Monotonic Structures",
+    "defaults": {
+      "nums": [
+        2,
+        1,
+        2,
+        4,
+        3
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "Keep unresolved indices on a stack until a larger value arrives to answer them.",
+    "steps": [
+      "Scan values from left to right.",
+      "Pop every pending index with a strictly smaller value and assign the current value to it.",
+      "Push the current index as unresolved.",
+      "Indices left on the stack have no greater value to their right."
+    ],
+    "example": "[2,1,2,4,3] produces [4,2,4,-1,-1]. Equal 2s do not answer one another.",
+    "use": "Next-greater relationships and amortized stack analysis.",
+    "watch": "Returns values, not indices; −1 denotes absence and can also be a valid answer value. O(n) stack and output space."
+  },
+  {
+    "id": "window_max",
+    "title": "Sliding Window Maximum · Deque",
+    "group": "Interview Monotonic Structures",
+    "defaults": {
+      "nums": [
+        1,
+        3,
+        -1,
+        -3,
+        5,
+        3,
+        6,
+        7
+      ],
+      "k": 3
+    },
+    "complexity": "O(n)",
+    "idea": "Discard expired and dominated candidates so the front always identifies the largest value in the current window.",
+    "steps": [
+      "Remove front indices outside the current k-wide window.",
+      "Remove back indices whose values are no greater than the arriving value.",
+      "Append the arriving index.",
+      "Once the window is full, record the value at the deque front."
+    ],
+    "example": "[1,3,-1,-3,5,3,6,7] with k=3 gives [3,3,5,5,6,7].",
+    "use": "Fast aggregate queries over a moving fixed-size window.",
+    "watch": "For nonempty nums, 1 ≤ k ≤ n. Empty nums requires k=0 and returns []. Active deque is O(k); this trace uses an array plus a head index and output storage."
+  },
+  {
+    "id": "jump",
+    "title": "Jump Game · Reachable Frontier",
+    "group": "Interview Greedy",
+    "defaults": {
+      "nums": [
+        2,
+        3,
+        1,
+        1,
+        4
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "Track the farthest reachable index instead of trying every jump sequence.",
+    "steps": [
+      "Start with frontier 0.",
+      "If the next index lies beyond the frontier, it cannot be reached.",
+      "Otherwise extend the frontier with index plus its jump allowance.",
+      "Succeed as soon as the final index is covered."
+    ],
+    "example": "[2,3,1,1,4] is reachable; [3,2,1,0,4] is blocked by the zero at index 3.",
+    "use": "Replacing exponential reachability exploration with a greedy invariant.",
+    "watch": "nums: nonnegative maximum forward jump lengths. You may jump fewer steps. Empty input returns false; a single reachable starting cell returns true. O(1) state."
+  },
+  {
+    "id": "gas_station",
+    "title": "Gas Station · Circular Greedy",
+    "group": "Interview Greedy",
+    "defaults": {
+      "gas": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "cost": [
+        3,
+        4,
+        5,
+        1,
+        2
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "If a route segment fails, none of its possible starting stations can rescue it; move the candidate past that segment.",
+    "steps": [
+      "Track total gas minus cost across the whole circle.",
+      "Track the tank balance since the current candidate start.",
+      "If that balance goes negative, discard starts through this station and reset after it.",
+      "If total balance is nonnegative, the remaining candidate works."
+    ],
+    "example": "gas [1,2,3,4,5] and cost [3,4,5,1,2] yield start index 3.",
+    "use": "Proving a greedy elimination rule over circular sequences.",
+    "watch": "gas and cost are equally sized nonnegative arrays, at most 20. Unlimited tank, empty at the chosen start. Empty or infeasible input returns −1. O(1) state."
+  },
+  {
+    "id": "robber",
+    "title": "House Robber · Rolling DP",
+    "group": "Interview Dynamic Programming",
+    "defaults": {
+      "nums": [
+        2,
+        7,
+        9,
+        3,
+        1
+      ]
+    },
+    "complexity": "O(n)",
+    "idea": "At each house, either skip it or take it together with the best reward ending before its neighbor.",
+    "steps": [
+      "Start with reward 0 for empty prefixes.",
+      "Compare previous best with best two houses back plus this house’s value.",
+      "Keep the better option and roll the two states forward.",
+      "Return the best reward; choosing no house is allowed."
+    ],
+    "example": "[2,7,9,3,1] yields 12 by taking values 2,9,1. Adjacent houses cannot both be selected.",
+    "use": "Selection problems with local incompatibility constraints.",
+    "watch": "nums: up to 20 integer rewards, including negatives. Empty or all-negative inputs can yield 0. O(1) core working space; the trace displays prefix results."
+  },
+  {
+    "id": "partition",
+    "title": "Partition Equal Subset Sum",
+    "group": "Interview Dynamic Programming",
+    "defaults": {
+      "nums": [
+        1,
+        5,
+        11,
+        5
+      ]
+    },
+    "complexity": "O(n × sum)",
+    "idea": "Equal partition is possible exactly when some subset reaches half the total.",
+    "steps": [
+      "Reject an odd total.",
+      "Mark sum 0 reachable.",
+      "For each value, update possible sums downward so it is used at most once.",
+      "Check whether half the total is reachable."
+    ],
+    "example": "[1,5,11,5] can split into [11] and [1,5,5], both totaling 11.",
+    "use": "0/1 subset-sum reachability and avoiding accidental item reuse.",
+    "watch": "nums: nonnegative integers with total ≤ 200. Empty subsets are allowed, so empty input is true. O(sum) DP storage."
+  },
+  {
+    "id": "knapsack",
+    "title": "0/1 Knapsack · Capacity DP",
+    "group": "Interview Dynamic Programming",
+    "defaults": {
+      "weights": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "values": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 5
+    },
+    "complexity": "O(n × capacity)",
+    "idea": "Choose each item at most once, maximizing value without exceeding the weight capacity.",
+    "steps": [
+      "Initialize best value at every capacity to 0.",
+      "For each item, iterate capacities from largest down to its weight.",
+      "Compare skipping with taking its value plus the smaller-capacity answer.",
+      "Return the best value at the requested capacity."
+    ],
+    "example": "Weights [2,3,4,5], values [3,4,5,6], capacity 5 gives 7 by taking the first two items.",
+    "use": "Budget-constrained 0/1 choices and pseudo-polynomial DP.",
+    "watch": "Up to 16 items; weights 0…40, values 0…100, capacity 0…40. Each zero-weight item is still used only once. O(capacity) algorithm space."
+  },
+  {
+    "id": "subsets",
+    "title": "Subsets · Backtracking",
+    "group": "Interview Backtracking",
+    "defaults": {
+      "nums": [
+        1,
+        2,
+        3
+      ]
+    },
+    "complexity": "Θ(n × 2ⁿ) output",
+    "idea": "Build every subset by choosing only indices after the last selected one.",
+    "steps": [
+      "Record the current partial selection as a valid subset.",
+      "Choose each later index in turn.",
+      "Recurse starting after that chosen index.",
+      "Undo the choice before exploring the next branch."
+    ],
+    "example": "[1,2] produces [], [1], [1,2], and [2]. The empty subset is included.",
+    "use": "Generating a power set while maintaining increasing chosen indices.",
+    "watch": "nums: at most 10 distinct integers. O(n) recursion/path state, excluding exponential output and snapshots."
+  },
+  {
+    "id": "permutations",
+    "title": "Permutations · Choose/Undo",
+    "group": "Interview Backtracking",
+    "defaults": {
+      "nums": [
+        1,
+        2,
+        3
+      ]
+    },
+    "complexity": "Θ(n × n!) output",
+    "idea": "Choose an unused value for the next position, then undo that choice to explore alternatives.",
+    "steps": [
+      "Track which input indices are currently used.",
+      "Append each unused value to the path.",
+      "When the path contains every value, record a complete ordering.",
+      "Restore the used flag and path after returning."
+    ],
+    "example": "[1,2] gives [1,2] and [2,1]. Unlike subsets, ordering changes the answer.",
+    "use": "Exploring arrangements with explicit reversible state.",
+    "watch": "nums: at most 6 distinct integers. Empty input has one empty permutation. O(n) path/used/recursion state, excluding output."
+  },
+  {
+    "id": "combination",
+    "title": "Combination Sum · Reusable Choices",
+    "group": "Interview Backtracking",
+    "defaults": {
+      "nums": [
+        2,
+        3,
+        6,
+        7
+      ],
+      "target": 7
+    },
+    "complexity": "Output-sensitive; exponential",
+    "idea": "Use positive candidates any number of times, but keep choices nondecreasing so different orders do not duplicate a combination.",
+    "steps": [
+      "Deduplicate and sort candidate values.",
+      "Try a candidate only if it fits the remaining target.",
+      "Recurse from the same candidate index to allow reuse.",
+      "Record remaining target 0, then undo choices."
+    ],
+    "example": "Candidates [2,3,6,7], target 7 produce [2,2,3] and [7], not their permutations.",
+    "use": "Backtracking with reuse, pruning, and canonical output order.",
+    "watch": "Positive candidates only; target 0…24. Target 0 yields one empty combination. Depth ≤ target/minCandidate; very large traces ask for smaller input."
+  },
+  {
+    "id": "queens",
+    "title": "N-Queens · Constraint Backtracking",
+    "group": "Interview Backtracking",
+    "defaults": {
+      "n": 4
+    },
+    "complexity": "Exponential search",
+    "idea": "Place one queen per row, rejecting columns and diagonals already attacked.",
+    "steps": [
+      "Try a safe column in the current row.",
+      "Mark its column and the two diagonal identifiers row−column and row+column.",
+      "Recurse to the next row.",
+      "Record complete boards and undo every mark when backtracking."
+    ],
+    "example": "n=4 has two solution boards. n=2 and n=3 have no solutions.",
+    "use": "Constraint propagation and undoing state consistently.",
+    "watch": "n: integer 1…8. Returns all boards as strings; rotations/reflections count separately. O(n) constraint state plus O(n²) displayed board and output."
+  },
+  {
+    "id": "islands",
+    "title": "Number of Islands · Grid BFS",
+    "group": "Interview Graphs & Grids",
+    "defaults": {
+      "grid": [
+        [
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    "complexity": "O(rows × columns)",
+    "idea": "Each unseen land cell starts one island; flood its four-directional neighbors before continuing the scan.",
+    "steps": [
+      "Scan every cell.",
+      "On an undiscovered 1, increment the island count and enqueue it.",
+      "Mark land when enqueuing so it cannot enter the queue twice.",
+      "Visit up, down, left, and right until that island is fully labeled."
+    ],
+    "example": "[[1,0],[0,1]] has two islands because diagonal contact does not connect them.",
+    "use": "Connected components in grids and safe BFS discovery rules.",
+    "watch": "Rectangular numeric 0/1 grid, at most 8×8. Empty grids give 0. A copied grid uses labels 2 and above for found islands; original input is preserved. O(rows × columns) space."
+  },
+  {
+    "id": "union_find",
+    "title": "Union–Find · Connected Components",
+    "group": "Interview Graphs & Grids",
+    "defaults": {
+      "n": 6,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          2,
+          4
+        ]
+      ]
+    },
+    "complexity": "O((n + e) α(n)) amortized",
+    "idea": "Keep a parent forest describing components and merge roots only when a new edge joins different groups.",
+    "steps": [
+      "Start every vertex in its own group.",
+      "Find each endpoint’s root, compressing parent paths.",
+      "Attach the smaller root tree to the larger one.",
+      "Reduce the component count only when two distinct roots merge."
+    ],
+    "example": "With vertices 0…5 and edges 0–1,1–2,3–4,2–4, vertices 0…4 connect while 5 remains separate: count 2.",
+    "use": "Incremental undirected connectivity and component grouping.",
+    "watch": "n: 1…12; up to 24 edges with endpoints 0…n−1. Duplicate edges/self-loops do not reduce the count. O(n) parent/size storage."
+  },
+  {
+    "id": "fenwick",
+    "title": "Fenwick Tree · Updates & Range Sums",
+    "group": "Interview Range Queries",
+    "defaults": {
+      "nums": [
+        2,
+        1,
+        3,
+        4,
+        5
+      ],
+      "updates": [
+        [
+          1,
+          2
+        ]
+      ],
+      "queries": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ]
+      ]
+    },
+    "complexity": "O((n + u + q) log n)",
+    "idea": "Store overlapping partial sums so point additions and prefix queries touch only logarithmically many tree entries.",
+    "steps": [
+      "Build the 1-based tree using point additions.",
+      "For each [index,delta], add delta to that value and update ancestors with i += i & −i.",
+      "For a prefix, move backward with i -= i & −i.",
+      "Inclusive range [l,r] is prefix(r+1) minus prefix(l)."
+    ],
+    "example": "[2,1,3,4,5] updated by +2 at index 1 becomes [2,3,3,4,5]. Query sums [0,2] and [1,4] are 8 and 15.",
+    "use": "Dynamic additive sums when a static prefix array would require costly repairs.",
+    "watch": "At most 16 values, 8 updates and 8 queries. All updates happen before queries. Public indices are 0-based; tree index 0 is unused. O(n) storage."
+  }
+]
